@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="charcoal-orange">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Panel</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="/css/themes.css" />
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body>
+
+<div class="admin-login-wrap" id="login-view">
+  <div class="admin-login-card reveal is-visible">
+    <div class="icon-badge" style="margin-bottom:16px;" id="login-icon"></div>
+    <h2>Admin Login</h2>
+    <p style="margin-bottom:24px;">Sign in to manage your website.</p>
+    <form id="login-form">
+      <div class="field">
+        <label for="login-username">Username</label>
+        <input type="text" id="login-username" name="username" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <label for="login-password">Password</label>
+        <input type="password" id="login-password" name="password" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Log In</button>
+      <div class="form-status" id="login-status"></div>
+    </form>
+  </div>
+</div>
+
+<div class="admin-shell" id="dashboard-view" style="display:none;">
+  <aside class="admin-sidebar" id="admin-sidebar"></aside>
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <h2 id="admin-page-title">Dashboard</h2>
+      <button class="btn btn-ghost btn-sm" id="logout-btn"></button>
+    </div>
+    <div id="admin-alert-area"></div>
+
+    <section class="admin-panel-section active" data-section="dashboard" id="section-dashboard"></section>
+    <section class="admin-panel-section" data-section="home" id="section-home"></section>
+    <section class="admin-panel-section" data-section="portfolio" id="section-portfolio"></section>
+    <section class="admin-panel-section" data-section="about" id="section-about"></section>
+    <section class="admin-panel-section" data-section="services" id="section-services"></section>
+    <section class="admin-panel-section" data-section="awards" id="section-awards"></section>
+    <section class="admin-panel-section" data-section="contact" id="section-contact"></section>
+    <section class="admin-panel-section" data-section="messages" id="section-messages"></section>
+    <section class="admin-panel-section" data-section="theme" id="section-theme"></section>
+    <section class="admin-panel-section" data-section="account" id="section-account"></section>
+  </main>
+</div>
+
+<script src="/js/icons.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/admin.js"></script>
+</body>
+</html>

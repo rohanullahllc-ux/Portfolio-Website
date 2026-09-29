@@ -1,0 +1,54 @@
+/* Each theme is a dark, cinematic background with two glowing accent colors. */
+
+:root,
+:root[data-theme="charcoal-orange"] {
+  --bg: #100e0c;
+  --bg-elevated: #1a1613;
+  --bg-elevated-2: #221c17;
+  --border: #322a23;
+  --text-primary: #f5f0ea;
+  --text-secondary: #b3ab9f;
+  --accent-1: #ff7a1a;
+  --accent-2: #2fb2ff;
+  --accent-1-rgb: 255, 122, 26;
+  --accent-2-rgb: 47, 178, 255;
+}
+
+:root[data-theme="midnight-blue"] {
+  --bg: #0a0e1a;
+  --bg-elevated: #121a2b;
+  --bg-elevated-2: #182338;
+  --border: #263453;
+  --text-primary: #eef2fb;
+  --text-secondary: #9aa7c7;
+  --accent-1: #3aa0ff;
+  --accent-2: #7c5cff;
+  --accent-1-rgb: 58, 160, 255;
+  --accent-2-rgb: 124, 92, 255;
+}
+
+:root[data-theme="slate-purple"] {
+  --bg: #120f1a;
+  --bg-elevated: #1c1728;
+  --bg-elevated-2: #251e33;
+  --border: #362a4a;
+  --text-primary: #f2eefb;
+  --text-secondary: #ab9fc7;
+  --accent-1: #a855f7;
+  --accent-2: #ec4899;
+  --accent-1-rgb: 168, 85, 247;
+  --accent-2-rgb: 236, 72, 153;
+}
+
+:root[data-theme="emerald-dark"] {
+  --bg: #0a120f;
+  --bg-elevated: #121e19;
+  --bg-elevated-2: #182922;
+  --border: #24392f;
+  --text-primary: #ecfbf3;
+  --text-secondary: #9fc7b3;
+  --accent-1: #10b981;
+  --accent-2: #f59e0b;
+  --accent-1-rgb: 16, 185, 129;
+  --accent-2-rgb: 245, 158, 11;
+}

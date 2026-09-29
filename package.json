@@ -1,0 +1,18 @@
+{
+  "name": "portfolio-website",
+  "version": "1.0.0",
+  "description": "Premium animated portfolio website with a password-protected Admin Panel.",
+  "main": "server/index.js",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js"
+  },
+  "license": "UNLICENSED",
+  "dependencies": {
+    "cloudinary": "^2.5.1",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "mongodb": "^6.10.0",
+    "multer": "^2.0.1"
+  }
+}

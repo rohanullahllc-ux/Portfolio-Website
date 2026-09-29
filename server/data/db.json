@@ -1,0 +1,298 @@
+{
+  "theme": "charcoal-orange",
+  "home": {
+    "name": "Rohaanullah Khan",
+    "title": "Shopify & E-commerce Store Specialist",
+    "tagline": "Building Shopify stores that turn browsers into buyers.",
+    "heroImage": "/images/placeholders/profile.svg",
+    "ctaLabel": "View My Work",
+    "stats": [
+      {
+        "label": "Stores Launched",
+        "value": 60,
+        "suffix": "+"
+      },
+      {
+        "label": "Happy Clients",
+        "value": 40,
+        "suffix": "+"
+      },
+      {
+        "label": "Years Experience",
+        "value": 4,
+        "suffix": ""
+      },
+      {
+        "label": "Average Rating",
+        "value": 4.9,
+        "suffix": "/5"
+      }
+    ],
+    "servicesTeaser": [
+      {
+        "icon": "store",
+        "title": "Shopify Store Design",
+        "text": "Custom storefronts built around your brand."
+      },
+      {
+        "icon": "cart",
+        "title": "E-commerce UX",
+        "text": "Shopping flows that turn visits into sales."
+      },
+      {
+        "icon": "zap",
+        "title": "Shopify Implementation",
+        "text": "Fast, reliable technical setup, done right."
+      },
+      {
+        "icon": "settings",
+        "title": "Automation Tools",
+        "text": "Custom tools that save time and boost sales."
+      }
+    ],
+    "featuredWorkIds": [
+      1,
+      3,
+      2,
+      4
+    ],
+    "testimonials": [
+      {
+        "quote": "Our new store's conversion rate jumped within the first month — customers stopped abandoning their carts.",
+        "author": "Sara K.",
+        "role": "Boutique Owner"
+      },
+      {
+        "quote": "Rohaanullah rebuilt our product pages and our average order value went up almost immediately.",
+        "author": "Marcus D.",
+        "role": "E-commerce Manager"
+      },
+      {
+        "quote": "The automation tools alone saved us hours every week on order management.",
+        "author": "Lina P.",
+        "role": "Subscription Box Founder"
+      }
+    ],
+    "brands": [
+      {
+        "name": "Northwind Apparel",
+        "logo": "/images/placeholders/brand-1.svg"
+      },
+      {
+        "name": "Bright Home Goods",
+        "logo": "/images/placeholders/brand-2.svg"
+      },
+      {
+        "name": "Lumen Boutique",
+        "logo": "/images/placeholders/brand-3.svg"
+      },
+      {
+        "name": "Pixel Mercantile",
+        "logo": "/images/placeholders/brand-4.svg"
+      },
+      {
+        "name": "CraftedGoods Co",
+        "logo": "/images/placeholders/brand-5.svg"
+      },
+      {
+        "name": "Vertex Outfitters",
+        "logo": "/images/placeholders/brand-6.svg"
+      }
+    ]
+  },
+  "portfolio": {
+    "categories": [
+      "Website Development",
+      "Shopify Development",
+      "Store Redesign",
+      "Automation Apps"
+    ],
+    "projects": [
+      {
+        "id": 1,
+        "title": "Boutique Apparel Storefront",
+        "category": "Shopify Development",
+        "thumbnail": "/images/placeholders/project-1.svg",
+        "description": "Full Shopify build for a boutique clothing brand's online launch."
+      },
+      {
+        "id": 2,
+        "title": "Home Goods Relaunch",
+        "category": "Store Redesign",
+        "thumbnail": "/images/placeholders/project-2.svg",
+        "description": "Complete redesign of an existing store to modernize the shopping experience."
+      },
+      {
+        "id": 3,
+        "title": "Local Bakery Website",
+        "category": "Website Development",
+        "thumbnail": "/images/placeholders/project-3.svg",
+        "description": "Custom website build for a local bakery's online ordering presence."
+      },
+      {
+        "id": 4,
+        "title": "Cart Recovery Automation",
+        "category": "Automation Apps",
+        "thumbnail": "/images/placeholders/project-4.svg",
+        "description": "Custom app to recover abandoned carts and re-engage shoppers automatically."
+      },
+      {
+        "id": 5,
+        "title": "Subscription Box Storefront",
+        "category": "Shopify Development",
+        "thumbnail": "/images/placeholders/project-5.svg",
+        "description": "Shopify store setup and configuration for a monthly subscription box business."
+      },
+      {
+        "id": 6,
+        "title": "Fitness Brand Redesign",
+        "category": "Store Redesign",
+        "thumbnail": "/images/placeholders/project-6.svg",
+        "description": "Refreshed product pages and navigation for a fitness apparel brand."
+      },
+      {
+        "id": 7,
+        "title": "Inventory Sync Tool",
+        "category": "Automation Apps",
+        "thumbnail": "/images/placeholders/project-7.svg",
+        "description": "Automation tool syncing inventory across multiple sales channels."
+      },
+      {
+        "id": 8,
+        "title": "Multi-Page Business Site",
+        "category": "Website Development",
+        "thumbnail": "/images/placeholders/project-8.svg",
+        "description": "Full multi-page website build beyond the standard storefront."
+      }
+    ]
+  },
+  "about": {
+    "story": "I got started building Shopify stores almost by accident — a friend's small business needed an online storefront fast, and once it launched, their sales outpaced what anyone expected from a plain, out-of-the-box theme. That one project turned into a full-time focus on e-commerce. What makes me different is that I don't just make a store look good, I build the whole shopping experience around getting visitors to actually buy: fast product discovery, clear product pages, and checkout flows that don't lose sales at the last step. My mission is to help small and growing brands launch stores that look premium and convert, without needing a big agency budget.",
+    "timeline": [
+      {
+        "label": "Built first Shopify store as a freelance project",
+        "year": "2022"
+      },
+      {
+        "label": "Landed first paid e-commerce client",
+        "year": "2023"
+      },
+      {
+        "label": "Expanded into full store redesigns and UX overhauls",
+        "year": "2024"
+      },
+      {
+        "label": "Started building custom automation tools for clients",
+        "year": "2025"
+      },
+      {
+        "label": "Launched 60+ stores, branched into subscription automation tools",
+        "year": "2026"
+      }
+    ],
+    "skills": [
+      {
+        "name": "Shopify Store Design",
+        "level": 95
+      },
+      {
+        "name": "Shopify Implementation",
+        "level": 92
+      },
+      {
+        "name": "E-commerce UX",
+        "level": 88
+      },
+      {
+        "name": "Product Page Design",
+        "level": 85
+      },
+      {
+        "name": "Collection & Discovery",
+        "level": 82
+      },
+      {
+        "name": "Automation Tools & SaaS",
+        "level": 78
+      }
+    ]
+  },
+  "services": [
+    {
+      "id": 1,
+      "icon": "store",
+      "title": "Shopify Store Design",
+      "description": "Custom Shopify storefronts designed around your brand, from homepage to checkout.",
+      "price": "Starting at $500"
+    },
+    {
+      "id": 2,
+      "icon": "cart",
+      "title": "E-commerce UX",
+      "description": "Shopping flows built to reduce drop-off and guide visitors to checkout.",
+      "price": "Starting at $300"
+    },
+    {
+      "id": 3,
+      "icon": "bag",
+      "title": "Product Page Design",
+      "description": "High-converting product pages with clear imagery, copy, and calls to action.",
+      "price": "Starting at $150 / page"
+    },
+    {
+      "id": 4,
+      "icon": "search",
+      "title": "Collection & Discovery",
+      "description": "Collection pages, filters, and search built to help shoppers find what they want fast.",
+      "price": "Starting at $250"
+    },
+    {
+      "id": 5,
+      "icon": "zap",
+      "title": "Shopify Implementation",
+      "description": "Theme setup, app integrations, and technical configuration done right the first time.",
+      "price": "Starting at $400"
+    },
+    {
+      "id": 6,
+      "icon": "settings",
+      "title": "CommerceFlow Automation Tools",
+      "description": "Custom-built automation for your store, or choose from an existing toolkit: abandoned cart recovery, inventory sync, order tagging, and review request automation.",
+      "price": "Starting at $49 / month"
+    }
+  ],
+  "awards": [
+    {
+      "id": 1,
+      "title": "Shopify Partner Milestone",
+      "year": "2025",
+      "givenBy": "Shopify Partner Program",
+      "description": "Recognized for consistently delivering high-performing client stores."
+    },
+    {
+      "id": 2,
+      "title": "Top Rated E-Commerce Freelancer",
+      "year": "2025",
+      "givenBy": "A leading freelance marketplace",
+      "description": "Awarded for maintaining a top client satisfaction rating across completed projects."
+    },
+    {
+      "id": 3,
+      "title": "Featured Case Study",
+      "year": "2024",
+      "givenBy": "A regional small business network",
+      "description": "Store relaunch featured as a case study in boosting local e-commerce sales."
+    }
+  ],
+  "contact": {
+    "email": "rohanullahllc@gmail.com",
+    "whatsapp": "Available on request",
+    "instagram": "https://instagram.com/",
+    "youtube": "https://youtube.com/"
+  },
+  "messages": [],
+  "admin": {
+    "username": "admin",
+    "password": "Admin@123"
+  }
+}

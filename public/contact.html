@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-theme="charcoal-orange">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Contact | Rohaanullah Khan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="stylesheet" href="/css/themes.css" />
+<link rel="stylesheet" href="/css/styles.css" />
+<link rel="stylesheet" href="/css/animations.css" />
+</head>
+<body>
+<header class="site-header"><div id="site-nav"></div></header>
+
+<main>
+  <section style="padding-top:72px;">
+    <div class="container">
+      <div class="section-head reveal">
+        <span class="eyebrow">Get In Touch</span>
+        <h2>Let's work together</h2>
+        <p>Reach out for Shopify builds, redesigns, or automation projects &mdash; I usually reply within a day.</p>
+      </div>
+
+      <div class="contact-grid">
+        <div class="contact-info-card reveal">
+          <div class="contact-info-row"><div class="icon-badge" id="icon-mail"></div><span id="contact-email"></span></div>
+          <div class="contact-info-row"><div class="icon-badge" id="icon-whatsapp"></div><span id="contact-whatsapp"></span></div>
+          <div class="social-icons" id="contact-social" style="margin-top:12px;"></div>
+        </div>
+
+        <form class="reveal" id="contact-form">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+          <div class="field">
+            <label for="projectType">Project Type</label>
+            <select id="projectType" name="projectType"></select>
+          </div>
+          <div class="field">
+            <label for="budget">Budget</label>
+            <input type="text" id="budget" name="budget" placeholder="e.g. $200 - $500" />
+          </div>
+          <div class="field">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary" id="submit-btn">Send Message</button>
+          <div class="form-status" id="form-status"></div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer" id="site-footer"></footer>
+
+<script src="/js/icons.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/contact.js"></script>
+</body>
+</html>
