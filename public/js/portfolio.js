@@ -15,6 +15,19 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   function renderGrid(filter) {
     const filtered = filter === "All" ? projects : projects.filter((p) => p.category === filter);
+
+    if (filtered.length === 0) {
+      const label = filter === "All" ? "Project" : `${filter} Project`;
+      gridEl.innerHTML = `
+        <div class="cta-banner reveal" style="grid-column: 1 / -1;">
+          <h2>Your Next ${label} Could Be Here.</h2>
+          <p>This category is wide open — be the first one featured in this portfolio.</p>
+          <a href="/contact.html" class="btn btn-primary">Start the Conversation</a>
+        </div>`;
+      SiteAnimations.initReveal(gridEl);
+      return;
+    }
+
     gridEl.innerHTML = filtered.map(workCardMarkup).join("");
     SiteAnimations.initReveal(gridEl);
     setupLightbox(gridEl, projects);
