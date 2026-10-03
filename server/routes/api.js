@@ -156,6 +156,76 @@ router.post("/admin/change-password", requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
+// ---- Password recovery via email ----
+const resetTokens = new Map(); // token -> { expires }
+const RESET_TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
+
+async function sendResetEmail(toEmail, resetUrl) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY not set — cannot send password reset email");
+    return;
+  }
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({
+      from: "Portfolio Admin <onboarding@resend.dev>",
+      to: [toEmail],
+      subject: "Reset your Admin Panel password",
+      html: `<p>Someone requested a password reset for your portfolio site's Admin Panel.</p>
+             <p><a href="${resetUrl}">Click here to set a new password</a> (valid for 1 hour).</p>
+             <p>If you didn't request this, you can safely ignore this email.</p>`,
+    }),
+  });
+  if (!response.ok) {
+    throw new Error(`Resend API error: ${response.status} ${await response.text()}`);
+  }
+}
+
+router.post("/admin/forgot-password", async (req, res) => {
+  const ip = req.ip;
+  if (isRateLimited(ip)) {
+    return res.status(429).json({ error: "Too many attempts. Try again later." });
+  }
+  const { email } = req.body || {};
+  const db = readDb();
+  const matches = typeof email === "string" && email.trim().toLowerCase() === db.contact.email.toLowerCase();
+
+  if (matches) {
+    const token = crypto.randomBytes(32).toString("hex");
+    resetTokens.set(token, { expires: Date.now() + RESET_TOKEN_TTL_MS });
+    const resetUrl = `${req.protocol}://${req.get("host")}/admin.html?reset=${token}`;
+    try {
+      await sendResetEmail(db.contact.email, resetUrl);
+    } catch (err) {
+      console.error("Password reset email failed:", err.message);
+    }
+  } else {
+    recordFailedAttempt(ip);
+  }
+  // Always respond the same way whether or not the email matched, so this
+  // endpoint can't be used to discover the admin's recovery email address.
+  res.json({ ok: true });
+});
+
+router.post("/admin/reset-password", (req, res) => {
+  const { token, newPassword } = req.body || {};
+  const entry = token && resetTokens.get(token);
+  if (!entry || Date.now() > entry.expires) {
+    resetTokens.delete(token);
+    return res.status(400).json({ error: "This reset link is invalid or has expired." });
+  }
+  if (!newPassword || newPassword.length < 8) {
+    return res.status(400).json({ error: "New password must be at least 8 characters" });
+  }
+  const db = readDb();
+  db.admin.password = newPassword;
+  writeDb(db);
+  resetTokens.delete(token);
+  res.json({ ok: true });
+});
+
 // ---- Image upload (protected) ----
 router.post("/admin/upload", requireAuth, upload.single("image"), async (req, res) => {
   if (!req.file) {

@@ -28,6 +28,32 @@
       </div>
       <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Log In</button>
       <div class="form-status" id="login-status"></div>
+      <button type="button" class="btn btn-ghost btn-sm" id="show-forgot-form" style="width:100%; justify-content:center; margin-top:12px;">Forgot password?</button>
+    </form>
+
+    <form id="forgot-form" style="display:none;">
+      <p style="margin-bottom:16px;">Enter your admin recovery email and we'll send you a link to reset your password.</p>
+      <div class="field">
+        <label for="forgot-email">Email</label>
+        <input type="email" id="forgot-email" name="email" autocomplete="email" required />
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Send Reset Link</button>
+      <div class="form-status" id="forgot-status"></div>
+      <button type="button" class="btn btn-ghost btn-sm" id="back-to-login-from-forgot" style="width:100%; justify-content:center; margin-top:12px;">Back to login</button>
+    </form>
+
+    <form id="reset-form" style="display:none;">
+      <p style="margin-bottom:16px;">Choose a new password for your Admin Panel.</p>
+      <div class="field">
+        <label for="reset-new-password">New Password</label>
+        <input type="password" id="reset-new-password" autocomplete="new-password" required />
+      </div>
+      <div class="field">
+        <label for="reset-confirm-password">Confirm New Password</label>
+        <input type="password" id="reset-confirm-password" autocomplete="new-password" required />
+      </div>
+      <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center;">Set New Password</button>
+      <div class="form-status" id="reset-status"></div>
     </form>
   </div>
 </div>

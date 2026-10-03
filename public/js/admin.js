@@ -68,6 +68,7 @@ function flashStatus(el, message, type) {
 // ---------------- Auth / boot ----------------
 
 async function boot() {
+  if (new URLSearchParams(location.search).get("reset")) return; // reset-password flow owns the view in this case
   const session = await apiFetch("/api/admin/session");
   if (!session.isAdmin) {
     showLogin();
@@ -114,6 +115,72 @@ function setupLoginForm() {
       status.className = "form-status";
       status.textContent = "";
       await boot();
+    } catch (err) {
+      status.className = "form-status error";
+      status.textContent = err.message;
+    }
+  });
+}
+
+function setupForgotPasswordFlow() {
+  const loginForm = document.getElementById("login-form");
+  const forgotForm = document.getElementById("forgot-form");
+  const status = document.getElementById("forgot-status");
+
+  document.getElementById("show-forgot-form").addEventListener("click", () => {
+    loginForm.style.display = "none";
+    forgotForm.style.display = "block";
+  });
+  document.getElementById("back-to-login-from-forgot").addEventListener("click", () => {
+    forgotForm.style.display = "none";
+    loginForm.style.display = "block";
+  });
+
+  forgotForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const email = document.getElementById("forgot-email").value;
+    try {
+      await apiFetch("/api/admin/forgot-password", { method: "POST", body: JSON.stringify({ email }) });
+      status.className = "form-status success";
+      status.textContent = "If that email is on file, a reset link has been sent. Check your inbox.";
+    } catch (err) {
+      status.className = "form-status error";
+      status.textContent = err.message;
+    }
+  });
+}
+
+function setupResetPasswordFlow() {
+  const token = new URLSearchParams(location.search).get("reset");
+  if (!token) return;
+
+  document.getElementById("login-view").style.display = "grid";
+  document.getElementById("dashboard-view").style.display = "none";
+  document.getElementById("login-form").style.display = "none";
+  document.getElementById("forgot-form").style.display = "none";
+  const resetForm = document.getElementById("reset-form");
+  resetForm.style.display = "block";
+  const status = document.getElementById("reset-status");
+
+  resetForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const newPassword = document.getElementById("reset-new-password").value;
+    const confirmPassword = document.getElementById("reset-confirm-password").value;
+    if (newPassword !== confirmPassword) {
+      status.className = "form-status error";
+      status.textContent = "Passwords do not match.";
+      return;
+    }
+    try {
+      await apiFetch("/api/admin/reset-password", { method: "POST", body: JSON.stringify({ token, newPassword }) });
+      status.className = "form-status success";
+      status.textContent = "Password updated. You can now log in.";
+      resetForm.reset();
+      setTimeout(() => {
+        history.replaceState(null, "", "/admin.html");
+        resetForm.style.display = "none";
+        document.getElementById("login-form").style.display = "block";
+      }, 1800);
     } catch (err) {
       status.className = "form-status error";
       status.textContent = err.message;
@@ -990,6 +1057,8 @@ function renderAccountSection() {
 
 document.addEventListener("DOMContentLoaded", () => {
   setupLoginForm();
+  setupForgotPasswordFlow();
+  setupResetPasswordFlow();
   setupLogout();
   boot();
 });
