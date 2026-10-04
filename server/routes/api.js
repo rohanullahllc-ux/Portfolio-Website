@@ -81,6 +81,43 @@ router.get("/content", (req, res) => {
   res.json(publicData);
 });
 
+// ---- Email sending (shared by contact notifications and password reset) ----
+async function sendEmail({ to, from, subject, html, replyTo }) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("RESEND_API_KEY not set — cannot send email");
+    return;
+  }
+  const response = await fetch("https://api.resend.com/emails", {
+    method: "POST",
+    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
+    body: JSON.stringify({ from, to: [to], subject, html, ...(replyTo ? { reply_to: replyTo } : {}) }),
+  });
+  if (!response.ok) {
+    throw new Error(`Resend API error: ${response.status} ${await response.text()}`);
+  }
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" })[c]);
+}
+
+async function sendContactNotification(item) {
+  const db = readDb();
+  await sendEmail({
+    to: db.contact.email,
+    from: "Rohaan Digital Website <noreply@rohaandigital.site>",
+    replyTo: item.email,
+    subject: `New contact form message from ${item.name}`,
+    html: `<p><strong>Name:</strong> ${escapeHtml(item.name)}</p>
+           <p><strong>Email:</strong> ${escapeHtml(item.email)}</p>
+           <p><strong>Project Type:</strong> ${escapeHtml(item.projectType || "—")}</p>
+           <p><strong>Budget:</strong> ${escapeHtml(item.budget || "—")}</p>
+           <p><strong>Message:</strong></p>
+           <p>${escapeHtml(item.message).replace(/\n/g, "<br>")}</p>`,
+  });
+}
+
 // ---- Contact form submissions ----
 router.post("/contact-submit", (req, res) => {
   const { name, email, projectType, budget, message } = req.body || {};
@@ -99,6 +136,7 @@ router.post("/contact-submit", (req, res) => {
   };
   db.messages.push(item);
   writeDb(db);
+  sendContactNotification(item).catch((err) => console.error("Contact notification email failed:", err.message));
   res.json({ ok: true });
 });
 
@@ -161,26 +199,14 @@ const resetTokens = new Map(); // token -> { expires }
 const RESET_TOKEN_TTL_MS = 60 * 60 * 1000; // 1 hour
 
 async function sendResetEmail(toEmail, resetUrl) {
-  const apiKey = process.env.RESEND_API_KEY;
-  if (!apiKey) {
-    console.error("RESEND_API_KEY not set — cannot send password reset email");
-    return;
-  }
-  const response = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: { Authorization: `Bearer ${apiKey}`, "Content-Type": "application/json" },
-    body: JSON.stringify({
-      from: "Rohaan Digital Admin <noreply@rohaandigital.site>",
-      to: [toEmail],
-      subject: "Reset your Admin Panel password",
-      html: `<p>Someone requested a password reset for your portfolio site's Admin Panel.</p>
-             <p><a href="${resetUrl}">Click here to set a new password</a> (valid for 1 hour).</p>
-             <p>If you didn't request this, you can safely ignore this email.</p>`,
-    }),
+  await sendEmail({
+    to: toEmail,
+    from: "Rohaan Digital Admin <noreply@rohaandigital.site>",
+    subject: "Reset your Admin Panel password",
+    html: `<p>Someone requested a password reset for your portfolio site's Admin Panel.</p>
+           <p><a href="${resetUrl}">Click here to set a new password</a> (valid for 1 hour).</p>
+           <p>If you didn't request this, you can safely ignore this email.</p>`,
   });
-  if (!response.ok) {
-    throw new Error(`Resend API error: ${response.status} ${await response.text()}`);
-  }
 }
 
 router.post("/admin/forgot-password", async (req, res) => {
